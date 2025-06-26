@@ -36,6 +36,26 @@ enum Commands {
 
         #[arg(short, long)]
         amount: u64
+    },
+
+    Transfer {
+        #[arg(short, long, default_value = "https://api.devnet.solana.com")]
+        rpc_url: String,
+
+        #[arg(short, long)]
+        keypair: String,
+
+        #[arg(short, long)]
+        source: String,
+
+        #[arg(short, long)]
+        destination: String,
+
+        #[arg(short, long)]
+        mint: String,
+
+        #[arg(short, long)]
+        amount: u64
     }
 }
 
@@ -61,6 +81,24 @@ async fn main() {
                 &keypair, 
                 &mint, 
                 &recipient, 
+                amount
+            ).unwrap();
+        }
+
+        Commands::Transfer {
+            rpc_url, 
+            keypair, 
+            source, 
+            destination, 
+            mint,
+            amount 
+        } => {
+            transfer_tokens(
+                &rpc_url, 
+                &keypair, 
+                &source, 
+                &destination, 
+                &mint,
                 amount
             ).unwrap();
         }
