@@ -8,5 +8,6 @@ anyhow = "1.0.98"
 clap = { version = "4.5.40", features = ["derive"] }
 solana-client = "1.18.26"
 solana-sdk = "1.18.26"
+spl-associated-token-account = "3.0.2"
 spl-token = { version = "3.5.0", features = ["no-entrypoint"]}
 tokio = { version = "1", features = ["full"] }
