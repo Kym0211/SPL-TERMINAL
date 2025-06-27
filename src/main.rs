@@ -56,7 +56,21 @@ enum Commands {
 
         #[arg(short, long)]
         amount: u64
-    }
+    },
+
+    Burn {
+        #[arg(short, long, default_value = "https://api.devnet.solana.com")]
+        rpc_url: String,
+
+        #[arg(short, long)]
+        keypair: String,
+
+        #[arg(short, long)]
+        mint: String,
+
+        #[arg(short, long)]
+        amount: u64
+    },
 }
 
 #[tokio::main]
@@ -99,6 +113,20 @@ async fn main() {
                 &source, 
                 &destination, 
                 &mint,
+                amount
+            ).unwrap();
+        }
+
+        Commands::Burn { 
+            rpc_url, 
+            keypair, 
+            mint, 
+            amount 
+        } => {
+            burn_tokens(
+                &rpc_url, 
+                &keypair, 
+                &mint, 
                 amount
             ).unwrap();
         }
