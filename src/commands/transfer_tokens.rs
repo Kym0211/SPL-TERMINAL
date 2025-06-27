@@ -16,7 +16,6 @@ use anyhow::{anyhow, Result};
 pub fn transfer_tokens(
     rpc_url: &String, 
     keypair: &String, 
-    source: &String, 
     destination: &String, 
     mint: &String,
     amount: u64
@@ -25,7 +24,7 @@ pub fn transfer_tokens(
     let client = RpcClient::new_with_commitment(rpc_url, CommitmentConfig::confirmed());
     let payer = read_keypair_file(keypair).expect("Failed to read keypair");
     
-    let source_pubkey = Pubkey::from_str(source)?;
+    let source_pubkey = payer.pubkey();
     let destination_pubkey = Pubkey::from_str(destination)?;
     let mint_pubkey = Pubkey::from_str(mint)?;
 
