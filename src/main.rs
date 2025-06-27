@@ -46,9 +46,6 @@ enum Commands {
         keypair: String,
 
         #[arg(short, long)]
-        source: String,
-
-        #[arg(short, long)]
         destination: String,
 
         #[arg(short, long)]
@@ -102,7 +99,6 @@ async fn main() {
         Commands::Transfer {
             rpc_url, 
             keypair, 
-            source, 
             destination, 
             mint,
             amount 
@@ -110,7 +106,6 @@ async fn main() {
             transfer_tokens(
                 &rpc_url, 
                 &keypair, 
-                &source, 
                 &destination, 
                 &mint,
                 amount
